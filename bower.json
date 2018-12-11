@@ -1,0 +1,18 @@
+{
+  "name": "z-auth",
+  "version": "1.0.0",
+  "authors": [
+    "z-auth"
+  ],
+  "description": "捡钱用户验证",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ]
+}
