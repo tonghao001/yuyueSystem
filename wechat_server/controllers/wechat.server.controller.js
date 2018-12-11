@@ -159,6 +159,10 @@ exports.UpsertUserPaymentId = function (req, res, next) {
 
 
 exports.getWechatUserBaseInfoBy = function (req, res, next) {
+  req.data = {
+    message: 'It is a test data'
+  };
+  return next();
   // var openId = 'oaXTWwe2SgE7pWGRCnhMuOA7s1RA';
   // updateUserBaseInfo(openId, function (err, newUser) {
   //   if (err) {
