@@ -5,7 +5,7 @@ module.exports = {
     // appDb: 'mongodb://localhost/z-auth-pro-test',
     // logDb: 'mongodb://localhost:27017/z-log-pro-test',
     serverAddress: 'http://localhost/',
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 80,
     mainAddress: 'https://datonghao.com/',
     wechat: {
         app_id: "wxa6210d998dd41246",
