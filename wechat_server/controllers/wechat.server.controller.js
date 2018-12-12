@@ -14,10 +14,9 @@ exports.vertificate = function (req, res, next) {
   }
 
   console.log('来自微信的get请求：' + JSON.stringify(req.query));
-
-  if(req.query.signature)
-
+  console.log('body:', JSON.stringify(req.body));
   try {
+    console.log('begin');
     var signature = req.query.signature;
     var timestamp = req.query.timestamp;
     var nonce = req.query.nonce;
@@ -42,6 +41,7 @@ exports.vertificate = function (req, res, next) {
     }
   }
   catch (e) {
+    console.log(e);
     req.err = {err: '解析出错！'};
     return next();
   }
