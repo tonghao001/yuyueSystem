@@ -60,13 +60,13 @@ module.exports = function (config) {
   // Enable jsonp
   app.enable('jsonp callback');
 
-  app.get('/', function (req, res, next) {
-    if (!config) {
-      return next();
-    }
+  // app.get('/', function (req, res, next) {
+  //   if (!config) {
+  //     return next();
+  //   }
 
-    res.redirect(config.mainAddress);
-  });
+  //   res.redirect(config.mainAddress);
+  // });
 
 
   var xml2json = require('xml2js');
