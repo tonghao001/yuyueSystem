@@ -3,7 +3,6 @@
  */
 'use strict';
 var JSSHA = require('jssha');
-var async = require('async');
 var wechatService = require('../services/wechat');
 
 exports.vertificate = function (req, res, next) {

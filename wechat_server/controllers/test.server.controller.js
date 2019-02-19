@@ -5,7 +5,7 @@
 var crypto = require('crypto'),
   httpManager = require('../supports/http_manager'),
   utf8 = require('utf8'),
-  xmlParser = require('xml2json');
+  xmlParser = require('xml2js');
 
 var Config = {
   payment_certificate: {"privatekey":"./certification/debug_payment/apiclient_key.pem","certificate":"./certification/debug_payment/apiclient_cert.pem","ca":"./certification/debug_payment/rootca.pem"},
@@ -84,7 +84,7 @@ function generateSign(options, key){
 
 function parseResult(xml, callback){
   try{
-    var jsonResult = xmlParser.toJson(xml);
+    var jsonResult = xmlParser.Parser(xml);
     var result = JSON.parse(jsonResult);
     return callback(null, result.xml);
   }
