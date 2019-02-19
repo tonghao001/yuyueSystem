@@ -111,7 +111,7 @@ function generateSign(options, key){
   // sign = utf8.encode(sign);
 
   console.log(sign);
-  sign = crypto.createHash('md5').update(sign).digest('hex');
+  sign = crypto.createHash('md5').update(sign).digest('hex');\
 
   return sign.toUpperCase();
 }
@@ -140,8 +140,8 @@ function pay(paymentInfo, callback) {
   var out_trade_no = paymentInfo.partner_trade_no ? paymentInfo.partner_trade_no : generateNewPartnerTradeNo();
   var open_id = paymentInfo.open_id;//姗姗Elina
   var amount = paymentInfo.amount;//至少100分
-  var attach = '订单附加信息用于标记';
-  var body = '***挂号支付';//商品描述
+  var attach = 'aseokp';
+  var body = '***dskfskfosf';//商品描述
   var trade_type = 'JSAPI';
 
 
