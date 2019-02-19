@@ -111,7 +111,7 @@ function generateSign(options, key){
   // sign = utf8.encode(sign);
 
   console.log(sign);
-  sign = crypto.createHash('md5').update(sign).digest('hex');\
+  sign = crypto.createHash('md5').update(sign).digest('hex');
 
   return sign.toUpperCase();
 }
