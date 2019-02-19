@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27d42ce0-a0e8-40f4-8ea9-460b640f2056" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wechat_server/controllers/wechat.server.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/wechat_server/controllers/wechat.server.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat_server/routes/test.server.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/wechat_server/routes/test.server.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js" beforeDir="false" afterPath="$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +30,24 @@
       <file leaf-file-name="test.server.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="11" />
+            <state relative-caret-position="480">
+              <caret line="32" column="41" lean-forward="true" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+              <folding>
+                <element signature="e#1308#1314#0" />
+                <element signature="n#!!block;n#generateNewPartnerTradeNo#0" />
+                <element signature="n#!!block;n#generateNonceStr#0" />
+                <element signature="n#!!block;n#generateSign#0" />
+                <element signature="n#!!block;n#parseResult#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="http_manager.server.library.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -51,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/wechat_server/routes/test.server.route.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+              <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -88,8 +102,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>xml</find>
-      <find>xmlParser</find>
       <find>parseString</find>
+      <find>xmlParser</find>
+      <find>generateSign</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -101,6 +116,8 @@
         <option value="$PROJECT_DIR$/wechat_server/routes/wechat.server.route.js" />
         <option value="$PROJECT_DIR$/wechat_server/controllers/wechat.server.controller.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/wechat_server/routes/test.server.route.js" />
+        <option value="$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js" />
         <option value="$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js" />
       </list>
     </option>
@@ -160,6 +177,24 @@
               <item name="wechat_server" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="yuyueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yuyueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="wechat_server" type="462c0819:PsiDirectoryNode" />
+              <item name="libraries" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yuyueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yuyueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="wechat_server" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yuyueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yuyueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="wechat_server" type="462c0819:PsiDirectoryNode" />
+              <item name="supports" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -215,12 +250,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550566044859</updated>
-      <workItem from="1550566048731" duration="1431000" />
+      <workItem from="1550566048731" duration="6637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1431000" />
+    <option name="totallyTimeSpent" value="6637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="23" width="1920" height="1009" extended-state="6" />
@@ -234,7 +269,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3295838" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.3295838" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.11023622" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -252,21 +287,16 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/wechat_server/services/wechat_api.server.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wechat_server/routes/test.server.route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -305,10 +335,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wechat_server/routes/test.server.route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="11" />
+        <state relative-caret-position="480">
+          <caret line="32" column="41" lean-forward="true" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding>
+            <element signature="e#1308#1314#0" />
+            <element signature="n#!!block;n#generateNewPartnerTradeNo#0" />
+            <element signature="n#!!block;n#generateNonceStr#0" />
+            <element signature="n#!!block;n#generateSign#0" />
+            <element signature="n#!!block;n#parseResult#0" />
+          </folding>
         </state>
       </provider>
     </entry>

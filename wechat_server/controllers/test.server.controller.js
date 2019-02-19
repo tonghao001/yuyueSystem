@@ -7,21 +7,28 @@ var crypto = require('crypto'),
   utf8 = require('utf8'),
   xmlParser = require('xml2js');
 
+
+var wechatConfig = {
+  appid: 'wxa6210d998dd41246',
+  mch_id: '1520653681',
+  payUrl: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
+  queryOrderUrl: 'https://api.mch.weixin.qq.com/pay/orderquery',
+  notifyUrl: 'http://datonghao.com/test/notify',//支付结果通知 ：本地url
+  privateKey: 'Tong88Hao88Ke12Ji061214GssTLf168',
+  serverIp: '39.98.41.24'
+};
+
+
 var Config = {
   payment_certificate: {"privatekey":"./certification/debug_payment/apiclient_key.pem","certificate":"./certification/debug_payment/apiclient_cert.pem","ca":"./certification/debug_payment/rootca.pem"},
   payment_params: {"privateKey":"1akejiDoujiaollenSocial2016Tfuck","payUrl":"https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers","mch_appid":"wx416e5d7df03fde74","mchid":"1290696901"}
 };
 
 exports.testPay = function(req, res, next){
-  req.data = {
-    success: true
-  };
-  return next();
+
   var paymentInfo = {
-    open_id: 'okiSOwq7cRwOEKlUcxj_D-2qUgsY',
-    // open_id: 'okiSOwg-tJVI8pUU8d1WfwfmAufU',
-    amount: 100,
-    spbill_create_ip: '101.228.63.161'
+    open_id: 'o7-H2wTS0Zniw2W_mkkFH0scU3u4',
+    amount: 100
   };
   pay(paymentInfo, function(err, result){
     if(err){
@@ -34,6 +41,15 @@ exports.testPay = function(req, res, next){
   });
 };
 
+exports.notifyPayResult = function(req, res, next){
+  console.log('pay notify: body参数',req.body, JSON.stringify(req.body));
+  console.log('pay notify: query参数',req.query, JSON.stringify(req.query));
+  req.data = {
+    success: true
+  };
+  return next();
+
+};
 
 
 function generateNewPartnerTradeNo(){
@@ -42,19 +58,21 @@ function generateNewPartnerTradeNo(){
 function generateNonceStr(){
   return Math.random().toString(30).substr(2).substr(0,32);
 }
+
+
 function generateSign(options, key){
   var sign = '';
-  if(options.amount){
-    sign += ('amount=' + options.amount);
+  if(options.appid){
+    sign += ('appid=' + options.appid);
   }
-  if(options.check_name){
-    sign += ('&check_name=' + options.check_name);
+  if(options.attach){
+    sign += ('&attach=' + options.attach);
   }
-  if(options.desc){
-    sign += ('&desc=' + options.desc);
+  if(options.body){
+    sign += ('&body=' + options.body);
   }
-  if(options.mch_appid){
-    sign += ('&mch_appid=' + options.mch_appid);
+  if(options.mch_id){
+    sign += ('&mch_id=' + options.mch_id);
   }
   if(options.mchid){
     sign += ('&mchid=' + options.mchid);
@@ -62,14 +80,23 @@ function generateSign(options, key){
   if(options.nonce_str){
     sign += ('&nonce_str=' + options.nonce_str);
   }
+  if(options.notify_url){
+    sign += ('&notify_url=' + options.notify_url);
+  }
   if(options.openid){
     sign += ('&openid=' + options.openid);
   }
-  if(options.partner_trade_no){
-    sign += ('&partner_trade_no=' + options.partner_trade_no);
+  if(options.out_trade_no){
+    sign += ('&out_trade_no=' + options.out_trade_no);
   }
   if(options.spbill_create_ip){
     sign += ('&spbill_create_ip=' + options.spbill_create_ip);
+  }
+  if(options.total_fee){
+    sign += ('&total_fee=' + options.total_fee);
+  }
+  if(options.trade_type){
+    sign += ('&trade_type=' + options.trade_type);
   }
 
   console.log(sign);
@@ -84,8 +111,11 @@ function generateSign(options, key){
 
 function parseResult(xml, callback){
   try{
+    console.log('result xml:', xml);
     var jsonResult = xmlParser.Parser(xml);
+    console.log('jsonResult:', jsonResult);
     var result = JSON.parse(jsonResult);
+    console.log('JSON.parse result:', result);
     return callback(null, result.xml);
   }
   catch(e){
@@ -97,57 +127,53 @@ function parseResult(xml, callback){
 }
 
 function pay(paymentInfo, callback) {
-  var key = Config.payment_params.privateKey;
-  var payUrl = Config.payment_params.payUrl;
-  var mch_appid = Config.payment_params.mch_appid; //公众号AppID wx6529791b014d0b22
-  var mchid = Config.payment_params.mchid; //商户号
+  var key = wechatConfig.privateKey;
+  var payUrl = wechatConfig.payUrl;
 
   var nonce_str = paymentInfo.nonce_str ? paymentInfo.nonce_str: generateNonceStr();
-  var partner_trade_no = paymentInfo.partner_trade_no ? paymentInfo.partner_trade_no : generateNewPartnerTradeNo();
+  var out_trade_no = paymentInfo.partner_trade_no ? paymentInfo.partner_trade_no : generateNewPartnerTradeNo();
   var open_id = paymentInfo.open_id;//姗姗Elina
-  var check_name = 'NO_CHECK'; //NO_CHECK：不校验, FORCE_CHECK: 强制校验，未实名认证的用户校验失败无法转账， OPTION_CHECK：针对已实名认证的用户才校验真实姓名
-  var re_user_name = ''; //收款用户真实姓名。如果check_name设置为FORCE_CHECK或OPTION_CHECK，则必填用户真实姓名
   var amount = paymentInfo.amount;//至少100分
-  var desc = 'Agilepops';
-  var spbill_create_ip = paymentInfo.spbill_create_ip;
+  var attach = '订单附加信息用于标记';
+  var body = '***挂号支付';//商品描述
+  var trade_type = 'JSAPI';
+
+
   var sign = generateSign({
-    mch_appid: mch_appid,
-    mchid: mchid ,
+    appid: wechatConfig.appid, //公众号AppID wx6529791b014d0b22
+    mch_id: wechatConfig.mch_id, //商户号
     nonce_str: nonce_str ,
-    partner_trade_no: partner_trade_no ,
+    notify_url: wechatConfig.notifyUrl,
+    out_trade_no: out_trade_no ,
     openid: open_id ,
-    check_name: check_name ,
-    re_user_name: re_user_name ,
-    amount: amount ,
-    desc: desc ,
-    spbill_create_ip: spbill_create_ip
+    total_fee: amount,
+    spbill_create_ip: wechatConfig.serverIp,
+    attach: attach,
+    body: body,
+    trade_type: trade_type
   }, key);
 
   console.log('sign:', sign);
 
-  var xml = '<xml>' +
-    '<amount>' + amount + '</amount>' +
-    '<check_name>' + check_name + '</check_name>' +
-    '<desc>' + desc + '</desc>' +
-    '<mch_appid>'+ mch_appid +'</mch_appid>' +
-    '<mchid>' + mchid + '</mchid>' +
-    '<nonce_str>' + nonce_str + '</nonce_str>' +
-    '<openid>' + open_id+ '</openid>' +
-    '<re_user_name>' + re_user_name + '</re_user_name>' +
-    '<partner_trade_no>' + partner_trade_no + '</partner_trade_no>' +
-    '<spbill_create_ip>' + spbill_create_ip + '</spbill_create_ip>' +
-    '<sign>' + sign + '</sign>' +
-    '</xml>';
+  var xml = `<xml>
+    <appid>${wechatConfig.appid}</appid>
+    <attach>${attach}</attach>
+    <body>${body}</body>
+    <mch_id>${wechatConfig.mch_id}</mch_id>
+    <nonce_str>${nonce_str}</nonce_str>
+    <notify_url>${wechatConfig.notifyUrl}</notify_url>
+    <openid>${open_id}</openid>
+    <out_trade_no>${out_trade_no}</out_trade_no>
+    <spbill_create_ip>${wechatConfig.serverIp}</spbill_create_ip>
+    <total_fee>${amount}</total_fee>
+    <trade_type>${trade_type}</trade_type>
+    <sign>${sign}</sign>
+  </xml>`;
 
   console.log('wechat request xml:');
   console.log(xml);
-  var certification = {
-    private_key: Config.payment_certificate.privatekey,
-    certificate: Config.payment_certificate.certificate,
-    ca: Config.payment_certificate.ca
-  };
-  console.log(certification);
-  httpManager.post(payUrl, xml, certification, function (err, result) {
+
+  httpManager.post(payUrl, xml, function (err, result) {
     if (err) {
       console.error(err);
       return callback(err);
@@ -158,6 +184,15 @@ function pay(paymentInfo, callback) {
       if(err){
         return callback(err);
       }
+      console.log('预支付返回结果result:', JSON.stringify(result));
+
+      result = result || {};
+
+      console.log('result.return_code:', result.return_code);
+      console.log('result.result_code:', result.result_code);
+      console.log('result.trade_type:', result.trade_type);
+      console.log('result.prepay_id:', result.prepay_id);
+      console.log('result.code_url:', result.code_url);
 
       if(!result.return_code){
         return callback({err: {type:'return_code_not_exist'}});

@@ -14,11 +14,7 @@ var httpManager = {
      * @param callback
      * @return json数据
      */
-    post: function (host, postData, certification, callback) {
-        var keyFile = fs.readFileSync(certification.private_key);
-        var certFile = fs.readFileSync(certification.certificate);
-        var caFile = fs.readFileSync(certification.ca);
-
+    post: function (host, postData, callback) {
         var headers = {
             'User-Agent': 'request',
             'Content-Type': 'Content-Type:application/x-www-form-urlencoded',
@@ -26,7 +22,7 @@ var httpManager = {
             //'accept': 'application/json',
         };
 
-        request.post({url:host, form: postData, json: true, key: keyFile, cert: certFile, ca: caFile, headers: headers}, function(err,res,data){
+        request.post({url:host, form: postData, json: true, headers: headers}, function(err,res,data){
             if (!err && res.statusCode == 200) {
                 if(data.err){
                     return callback(data);

@@ -7,4 +7,5 @@ var testController = require('../controllers/test');
 
 module.exports = function (app) {
   app.route('/test/pay').post(testController.testPay);
+  app.route('/test/notify').post(testController.notifyPayResult);
 };
