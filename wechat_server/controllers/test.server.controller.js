@@ -199,17 +199,15 @@ function pay(paymentInfo, callback) {
       console.log('result.trade_type:', result.trade_type);
       console.log('result.prepay_id:', result.prepay_id);
       console.log('result.code_url:', result.code_url);
+      console.log('result.err_code:', result.err_code);
+      console.log('result.err_code_des:', result.err_code_des);
 
-      if(!result.return_code){
+      if(!result.return_code || !result.return_code[0]){
         return callback({err: {type:'return_code_not_exist'}});
       }
 
-      if(result.return_code.toUpperCase() === 'FAIL'){
-        return callback({err: {type: result.err_code, message: result.err_code_des}});
-      }
-
-      if(result.result_code.toUpperCase() === 'FAIL'){
-        return callback({err: {type: result.err_code, message: result.err_code_des}});
+      if(result.return_code[0].toUpperCase() === 'FAIL'){
+        return callback({err: {type: result.err_code, message: result.return_msg && result.return_msg[0]}});
       }
 
       return callback(null, result);
