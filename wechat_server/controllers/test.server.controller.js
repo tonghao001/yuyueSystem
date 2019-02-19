@@ -108,7 +108,7 @@ function generateSign(options, key){
 
   console.log(sign);
   sign += ('&key=' + key);
-  sign = utf8.encode(sign);
+  // sign = utf8.encode(sign);
 
   console.log(sign);
   sign = crypto.createHash('md5').update(sign).digest('hex');
@@ -146,7 +146,7 @@ function pay(paymentInfo, callback) {
 
 
   var sign = generateSign({
-    appid: wechatConfig.appid, //公众号AppID wx6529791b014d0b22
+    appid: wechatConfig.appid, //公众号AppID wxa6210d998dd41246
     mch_id: wechatConfig.mch_id, //商户号
     nonce_str: nonce_str ,
     notify_url: wechatConfig.notifyUrl,
