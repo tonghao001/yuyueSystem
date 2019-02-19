@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27d42ce0-a0e8-40f4-8ea9-460b640f2056" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,7 +26,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.server.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.server.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
@@ -35,6 +35,15 @@
                 <element signature="n#!!block;n#generateNewPartnerTradeNo#0" />
                 <element signature="n#!!block;n#generateNonceStr#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -101,6 +110,7 @@
       <find>parseString</find>
       <find>xmlParser</find>
       <find>generateSign</find>
+      <find>result.return_code.toUpperCase</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -115,6 +125,7 @@
         <option value="$PROJECT_DIR$/wechat_server/supports/http_manager.server.library.js" />
         <option value="$PROJECT_DIR$/wechat_server/routes/test.server.route.js" />
         <option value="$PROJECT_DIR$/wechat_server/controllers/test.server.controller.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -140,7 +151,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="height" value="829" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -245,15 +256,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550566044859</updated>
-      <workItem from="1550566048731" duration="8107000" />
+      <workItem from="1550566048731" duration="8156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8107000" />
+    <option name="totallyTimeSpent" value="8156000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="829" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" side_tool="true" />
@@ -264,7 +275,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.43644544" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.2668428" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.28490832" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932507" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -366,6 +377,13 @@
             <element signature="n#!!block;n#generateNewPartnerTradeNo#0" />
             <element signature="n#!!block;n#generateNonceStr#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>
