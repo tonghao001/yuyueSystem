@@ -18,12 +18,6 @@ var wechatConfig = {
   serverIp: '39.98.41.24'
 };
 
-
-var Config = {
-  payment_certificate: {"privatekey":"./certification/debug_payment/apiclient_key.pem","certificate":"./certification/debug_payment/apiclient_cert.pem","ca":"./certification/debug_payment/rootca.pem"},
-  payment_params: {"privateKey":"1akejiDoujiaollenSocial2016Tfuck","payUrl":"https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers","mch_appid":"wx416e5d7df03fde74","mchid":"1290696901"}
-};
-
 exports.testPay = function(req, res, next){
 
   var paymentInfo = {
@@ -49,6 +43,19 @@ exports.notifyPayResult = function(req, res, next){
   };
   return next();
 
+};
+
+exports.testXML = function(req, res, next){
+  var xml = `<xml><return_code><![CDATA[FAIL]]></return_code>
+1|wechat-server  | <return_msg><![CDATA[签名错误]]></return_msg>
+1|wechat-server  | </xml>`;
+  xmlParser.parseString(xml, function(err, result){
+    console.log(result.xml);
+    req.data = {
+      data: result
+    };
+    return next();
+  });
 };
 
 
@@ -112,11 +119,10 @@ function generateSign(options, key){
 function parseResult(xml, callback){
   try{
     console.log('result xml:', xml);
-    var jsonResult = xmlParser.Parser(xml);
-    console.log('jsonResult:', jsonResult);
-    var result = JSON.parse(jsonResult);
-    console.log('JSON.parse result:', result);
-    return callback(null, result.xml);
+    xmlParser.parseString(xml, function(err, jsonResult){
+      console.log('jsonResult:', jsonResult);
+      return callback(null, jsonResult.xml);
+    });
   }
   catch(e){
     console.log();
