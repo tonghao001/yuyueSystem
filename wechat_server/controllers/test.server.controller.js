@@ -141,7 +141,7 @@ function pay(paymentInfo, callback) {
   var open_id = paymentInfo.open_id;//姗姗Elina
   var amount = paymentInfo.amount;//至少100分
   var attach = 'aseokp';
-  var body = '***dskfskfosf';//商品描述
+  var body = 'pok[fpkepokdskfskfosf';//商品描述
   var trade_type = 'JSAPI';
 
 
