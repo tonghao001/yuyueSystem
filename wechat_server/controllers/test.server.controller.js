@@ -140,8 +140,8 @@ function pay(paymentInfo, callback) {
   var out_trade_no = paymentInfo.partner_trade_no ? paymentInfo.partner_trade_no : generateNewPartnerTradeNo();
   var open_id = paymentInfo.open_id;//姗姗Elina
   var amount = paymentInfo.amount;//至少100分
-  var attach = 'aseokp';
-  var body = 'pok[fpkepokdskfskfosf';//商品描述
+  var attach = '附加信息';
+  var body = '商品描述信息';//商品描述
   var trade_type = 'JSAPI';
 
 
