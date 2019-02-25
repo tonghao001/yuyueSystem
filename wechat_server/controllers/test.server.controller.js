@@ -34,6 +34,45 @@ exports.testPay = function(req, res, next){
     return next();
   });
 };
+exports.queryOrder = function(req, res, next){
+  var url = 'https://api.mch.weixin.qq.com/pay/orderquery';
+
+  httpManager.post(url, xml, function (err, result) {
+    if (err) {
+      console.error(err);
+      return callback(err);
+    }
+
+    console.log(result);
+    parseResult(result, function(err, result){
+      if(err){
+        return callback(err);
+      }
+      console.log('预支付返回结果result:', JSON.stringify(result));
+
+      result = result || {};
+
+      console.log('result.return_code:', result.return_code);
+      console.log('result.result_code:', result.result_code);
+      console.log('result.trade_type:', result.trade_type);
+      console.log('result.prepay_id:', result.prepay_id);
+      console.log('result.code_url:', result.code_url);
+      console.log('result.err_code:', result.err_code);
+      console.log('result.err_code_des:', result.err_code_des);
+
+      if(!result.return_code || !result.return_code[0]){
+        return callback({err: {type:'return_code_not_exist'}});
+      }
+
+      if(result.return_code[0].toUpperCase() === 'FAIL'){
+        return callback({err: {type: result.err_code, message: result.return_msg && result.return_msg[0]}});
+      }
+
+      return callback(null, result);
+    });
+  });
+
+};
 
 exports.notifyPayResult = function(req, res, next){
   console.log('pay notify: body参数',req.body, JSON.stringify(req.body));
@@ -213,5 +252,12 @@ function pay(paymentInfo, callback) {
       return callback(null, result);
     });
   });
+
+};
+
+exports.getCode = function(req, res, next){
+  req.data = {code:req.query.code};
+  console.log('code:', req.data.code);
+  return next();
 
 };
